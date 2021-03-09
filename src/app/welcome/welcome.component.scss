@@ -1,0 +1,33 @@
+.my {
+  &-section {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+  }
+  &-container {
+    max-width: 1000px;
+    padding: 80px 0;
+    margin: 0 auto;
+  }
+  &-login {
+    width: 400px;
+    padding: 30px 16px;
+    text-align: center;
+    &__header {
+      justify-content: center;
+    }
+    &__title {
+      font-size: 50px;
+    }
+    &__content {
+      margin-top: 20px;
+      p {
+        color: #77838c;
+      }
+    }
+  }
+  &-button {
+    margin-top: 20px;
+    background-color: #3380c1;
+  }
+}
