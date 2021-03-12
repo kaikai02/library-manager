@@ -1,0 +1,28 @@
+<main class="my-main">
+  <div class="my-content">
+    <section class="my-section">
+      <div class="my-container">
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="my-form">
+          <input formControlName="isbn" class="my-form__input" placeholder="ISBNで検索" required>
+          <button mat-flat-button color="primary" [disabled]="searchForm.invalid || searchForm.pristine" class="my-form__button">検索</button>
+        </form>
+      </div>
+    </section>
+    <section class="my-section">
+      <div class="my-container">
+        <div class="my-search-list">
+          <mat-card class="my-book-panel" *ngIf="book">
+            <div class="my-book-panel__thumb"><img [src]="book.thumbnail" alt=""></div>
+            <div class="my-book-panel__content">
+              <p class="my-book-panel__name">{{ book.title }}</p>
+              <p class="my-book-panel__info" *ngIf="book.author">著者：{{ book.author }}</p>
+              <p class="my-book-panel__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
+              <p class="my-book-panel__info" *ngIf="book.published">発行：{{ book.published }}</p>
+              <button mat-flat-button color="primary" class="my-book-panel__button">シェアライブラリーに追加</button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
