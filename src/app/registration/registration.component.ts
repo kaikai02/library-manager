@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
       Validators.minLength(10),
     ]),
   });
-  book: Book;
+  books: Book[];
 
   constructor(private googleBookApiService: GoogleBookApiService) { }
 
@@ -28,15 +28,17 @@ export class RegistrationComponent implements OnInit {
 
   onSearch(): void {
     this.googleBookApiService.Search(this.isbn.value).subscribe((data: any) => {
-      this.book = {
-        isbn: data.volumeInfo.industryIdentifiers[0].identifier,
-        title: data.volumeInfo.title,
-        description: data.volumeInfo.description,
-        thumbnail: data.volumeInfo.imageLinks.smallThumbnail,
-        author: data.volumeInfo.authors[0],
-        publisher: data.volumeInfo.publisher,
-        published: data.volumeInfo.publishedDate,
-      };
+      this.books = data.map((book: any) => {
+        return {
+          isbn: book.volumeInfo.industryIdentifiers[0].identifier,
+          title: book.volumeInfo.title,
+          description: book.volumeInfo.description,
+          thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
+          author: book.volumeInfo.authors[0],
+          publisher: book.volumeInfo.publisher,
+          published: book.volumeInfo.publishedDate,
+        };
+      });
     });
   }
 

@@ -10,8 +10,8 @@
     </section>
     <section class="my-section">
       <div class="my-container">
-        <div class="my-search-list">
-          <mat-card class="my-book-panel" *ngIf="book">
+        <div class="my-search-list" *ngIf="books">
+          <mat-card class="my-book-panel" *ngFor="let book of books">
             <div class="my-book-panel__thumb"><img [src]="book.thumbnail" alt=""></div>
             <div class="my-book-panel__content">
               <p class="my-book-panel__name">{{ book.title }}</p>

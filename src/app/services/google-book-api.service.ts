@@ -15,7 +15,7 @@ export class GoogleBookApiService {
   Search(isbn): Observable<void> {
     const encodedURI = encodeURI("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn + "&maxResults=1");
     return this.http.get(encodedURI).pipe(
-      map((data: any) => data.items[0])
+      map((data: any) => data.items)
     );
   }
 }
