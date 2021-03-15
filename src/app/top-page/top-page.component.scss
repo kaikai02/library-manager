@@ -1,0 +1,34 @@
+.my {
+  &-title {
+    margin-bottom: 50px;
+    font-size: 30px;
+    text-align: center;
+  }
+  &-book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, auto));
+    grid-gap: 20px;
+  }
+  &-book-card {
+    position: relative;
+    &__thumb {
+      box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
+      img {
+        width: 100%;
+      }
+    }
+    &__badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 8px;
+      background-color: rgba(237, 121, 113, 0.8);
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1;
+    }
+  }
+}

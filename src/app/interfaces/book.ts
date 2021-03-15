@@ -6,4 +6,5 @@ export interface Book {
   author: string;
   publisher: string;
   published: string;
+  isBorrow: boolean;
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { BookCardComponent } from './book-card/book-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -15,13 +14,14 @@ import {MatInputModule} from '@angular/material/input';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TopPageComponent } from './top-page/top-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     RegistrationComponent,
-    BookCardComponent
+    TopPageComponent,
   ],
   imports: [
     BrowserModule,

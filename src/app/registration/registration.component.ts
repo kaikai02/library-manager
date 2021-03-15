@@ -37,6 +37,7 @@ export class RegistrationComponent implements OnInit {
           author: book.volumeInfo.authors[0],
           publisher: book.volumeInfo.publisher,
           published: book.volumeInfo.publishedDate,
+          isBorrow: false,
         };
       });
     });
