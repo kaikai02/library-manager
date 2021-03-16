@@ -11,10 +11,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TopPageComponent } from './top-page/top-page.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { TopPageComponent } from './top-page/top-page.component';
     WelcomeComponent,
     RegistrationComponent,
     TopPageComponent,
+    BookDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { TopPageComponent } from './top-page/top-page.component';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
