@@ -1,14 +1,9 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .my {
-  &-section {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-  }
-  &-container {
-    max-width: 1000px;
-    padding: 80px 0;
-    margin: 0 auto;
-  }
   &-login {
     width: 400px;
     padding: 30px 16px;
@@ -17,6 +12,8 @@
       justify-content: center;
     }
     &__title {
+      margin-bottom: 0;
+      font-family: 'Sorts Mill Goudy', serif;
       font-size: 50px;
     }
     &__content {

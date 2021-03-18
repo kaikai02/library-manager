@@ -44,11 +44,17 @@ html, body { height: 100%; }
 body {
   margin: 0;
   background: #f7f7f7;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Noto Sans JP", "Helvetica Neue", sans-serif;
 }
 
 .my {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
   &-main {
+    flex: 1 0 auto;
     padding: 80px 0;
   }
   &-section {
@@ -60,5 +66,33 @@ body {
     max-width: 960px;
     padding: 0 40px;
     margin: 0 auto;
+  }
+  &-header {
+    padding: 15px 0;
+    background-color: #3380c1;
+    &__inner {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__title {
+      a {
+        color: #fff;
+        font-family: 'Sorts Mill Goudy', serif;
+        font-size: 26px;
+        text-decoration: none;
+      }
+    }
+    &__button {
+      color: #3380c1;
+      font-weight: bold;
+    }
+  }
+  &-footer {
+    padding: 30px 0;
+    &__copyright {
+      color: #a1a1a1;
+      font-size: 12px;
+      text-align: center;
+    }
   }
 }
