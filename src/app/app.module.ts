@@ -15,6 +15,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { TopPageComponent } from './top-page/top-page.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
@@ -37,6 +38,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     MatSlideToggleModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

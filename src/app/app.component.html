@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<div class="my-wrapper">
+  <header class="my-header">
+    <div class="my-container my-header__inner">
+      <p class="my-header__title"><a routerLink="/">Share Library</a></p>
+      <button mat-flat-button routerLink="/registration" class="my-header__button">新しい本を登録</button>
+    </div>
+  </header>
+  <main class="my-main">
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="my-footer">
+    <p class="my-footer__copyright">&copy; Share Library</p>
+  </footer>
+</div>
