@@ -19,6 +19,10 @@ import { RouterModule } from '@angular/router';
 import { TopPageComponent } from './top-page/top-page.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
