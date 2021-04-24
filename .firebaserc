@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "share-library-d59fc": {
+      "hosting": {
+        "library-manager": [
+          "share-library-d59fc"
+        ]
+      }
+    }
+  }
+}
