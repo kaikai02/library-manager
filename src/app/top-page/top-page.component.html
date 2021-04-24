@@ -2,9 +2,9 @@
   <div class="my-container">
     <h1 class="my-title">本棚一覧</h1>
     <div class="my-book-list">
-      <div class="my-book-card" *ngFor="let book of [1,2,3,4,5,6,7]">
+      <div class="my-book-card" *ngFor="let book of books$ | async">
         <span class="my-book-card__badge">貸出中</span>
-        <figure class="my-book-card__thumb"><img src="http://books.google.com/books/content?id=kgl5QgAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api" alt=""></figure>
+        <figure class="my-book-card__thumb"><img [src]="book.thumbnail" alt=""></figure>
       </div>
     </div>
   </div>

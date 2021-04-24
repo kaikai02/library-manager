@@ -1,10 +1,10 @@
 export interface Book {
-  isbn: number;
+  id: string;
   title: string;
-  description: string;
+  description?: string;
   thumbnail: string;
   author: string;
-  publisher: string;
+  publisher?: string;
   published: string;
   isBorrow: boolean;
 }

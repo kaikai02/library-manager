@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../interfaces/book';
+import { BookService } from '../services/book.service';
 import { GoogleBookApiService } from '../services/google-book-api.service';
 
 @Component({
@@ -17,7 +18,10 @@ export class RegistrationComponent implements OnInit {
   });
   books: Book[];
 
-  constructor(private googleBookApiService: GoogleBookApiService) { }
+  constructor(
+    private googleBookApiService: GoogleBookApiService,
+    private book: BookService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -41,6 +45,10 @@ export class RegistrationComponent implements OnInit {
         };
       });
     });
+  }
+
+  onAddBook(): void {
+    this.book.addBook(this.books[0]);
   }
 
 }

@@ -16,7 +16,7 @@
           <p class="my-book-panel__info" *ngIf="book.author">著者：{{ book.author }}</p>
           <p class="my-book-panel__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
           <p class="my-book-panel__info" *ngIf="book.published">発行：{{ book.published }}</p>
-          <button mat-flat-button color="primary" class="my-book-panel__button">シェアライブラリーに追加</button>
+          <button mat-flat-button color="primary" (click)="onAddBook()" class="my-book-panel__button">シェアライブラリーに追加</button>
         </div>
       </mat-card>
     </div>
