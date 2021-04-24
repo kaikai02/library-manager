@@ -27,4 +27,15 @@ export class BookService {
   getBooks(): Observable<Book[]> {
     return this.store.collection<Book>('books').valueChanges();
   }
+
+  getBook(id: number): Observable<Book> {
+    return this.store.doc<Book>(`books/${id}`).valueChanges();
+  }
+
+  updateBorrow(id: number, isBorrow: boolean): Promise<void> {
+    console.log(isBorrow);
+    return this.store.doc<Book>(`books/${id}`).update({
+      isBorrow: !isBorrow,
+    });
+  }
 }

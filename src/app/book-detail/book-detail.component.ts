@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
+import { BookService } from '../services/book.service';
 import { GoogleBookApiService } from '../services/google-book-api.service';
 
 @Component({
@@ -9,31 +11,18 @@ import { GoogleBookApiService } from '../services/google-book-api.service';
   styleUrls: ['./book-detail.component.scss']
 })
 export class BookDetailComponent implements OnInit {
-  book: Book;
+  isbn = +this.route.snapshot.paramMap.get('isbn')
+  book$: Observable<Book> = this.bookService.getBook(this.isbn);
 
   constructor(
     private route: ActivatedRoute,
-    private googleBookApiService: GoogleBookApiService,
+    private bookService: BookService
   ) { }
 
-  ngOnInit(): void {
-    this.getBook();
-  }
+  ngOnInit(): void { }
 
-  getBook(): void {
-    const isbn = +this.route.snapshot.paramMap.get('isbn');
-    this.googleBookApiService.Search(isbn).subscribe((data: any) => {
-      this.book = {
-        isbn: data[0].volumeInfo.industryIdentifiers[0].identifier,
-        title: data[0].volumeInfo.title,
-        description: data[0].volumeInfo.description,
-        thumbnail: data[0].volumeInfo.imageLinks.smallThumbnail,
-        author: data[0].volumeInfo.authors[0],
-        publisher: data[0].volumeInfo.publisher,
-        published: data[0].volumeInfo.publishedDate,
-        isBorrow: false,
-      };
-    })
+  onChangeBorrow(isBorrow: boolean): void {
+    this.bookService.updateBorrow(this.isbn, isBorrow);
   }
 
 }
