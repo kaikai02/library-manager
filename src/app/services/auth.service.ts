@@ -35,7 +35,6 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.auth.signInWithPopup(provider)
       .then(credential => {
-        this.router.navigateByUrl('/');
         this.snackbar.open('ログインしました！', null, { duration: 2000 });
         return this.updateData(credential.user);
       })
@@ -44,7 +43,6 @@ export class AuthService {
 
   logout(): void {
     this.auth.signOut().then(() => {
-      this.router.navigateByUrl('/welcome');
       this.snackbar.open('ログアウトしました', null, { duration: 2000 });
     });
   }
