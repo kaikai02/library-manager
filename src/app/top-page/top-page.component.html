@@ -3,8 +3,10 @@
     <h1 class="my-title">本棚一覧</h1>
     <div class="my-book-list">
       <div class="my-book-card" *ngFor="let book of books$ | async">
-        <span class="my-book-card__badge">貸出中</span>
-        <figure class="my-book-card__thumb"><img [src]="book.thumbnail" alt=""></figure>
+        <a routerLink="/books/{{book.id}}" routerLinkActive="router-link-active">
+          <span *ngIf="book.isBorrow" class="my-book-card__badge">貸出中</span>
+          <figure class="my-book-card__thumb"><img [src]="book.thumbnail" alt=""></figure>
+        </a>
       </div>
     </div>
   </div>
