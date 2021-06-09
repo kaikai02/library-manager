@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../interfaces/book';
 import { BookService } from '../services/book.service';
@@ -17,10 +18,12 @@ export class RegistrationComponent implements OnInit {
     ]),
   });
   books: Book[];
+  isExist: boolean;
 
   constructor(
     private googleBookApiService: GoogleBookApiService,
-    private book: BookService
+    private book: BookService,
+    private store: AngularFirestore
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +47,14 @@ export class RegistrationComponent implements OnInit {
           isBorrow: false,
         };
       });
+    });
+
+    this.store.doc(`books/${this.isbn.value}`).ref.get().then((doc) => {
+      if (doc.exists) {
+        this.isExist = true;
+      } else {
+        this.isExist = false;
+      }
     });
   }
 
