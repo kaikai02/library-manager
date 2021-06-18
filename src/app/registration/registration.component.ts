@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../interfaces/book';
 import { BookService } from '../services/book.service';
 import { GoogleBookApiService } from '../services/google-book-api.service';
+import { OpenbdService } from '../services/openbd.service';
 
 @Component({
   selector: 'app-registration',
@@ -23,7 +24,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     private googleBookApiService: GoogleBookApiService,
     private book: BookService,
-    private store: AngularFirestore
+    private store: AngularFirestore,
+    private openbd: OpenbdService
   ) { }
 
   ngOnInit(): void {
@@ -34,16 +36,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.googleBookApiService.Search(this.isbn.value).subscribe((data: any) => {
+    this.openbd.Search(this.isbn.value).subscribe((data: any) => {
       this.books = data.map((book: any) => {
         return {
-          isbn: book.volumeInfo.industryIdentifiers[0].identifier,
-          title: book.volumeInfo.title,
-          description: book.volumeInfo.description,
-          thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
-          author: book.volumeInfo.authors[0],
-          publisher: book.volumeInfo.publisher,
-          published: book.volumeInfo.publishedDate,
+          isbn: book.summary.isbn,
+          title: book.summary.title,
+          description: book.onix.CollateralDetail.TextContent[0].Text,
+          thumbnail: book.summary.cover,
+          author: book.summary.author,
+          publisher: book.summary.publisher,
+          published: book.summary.pubdate,
           isBorrow: false,
         };
       });
