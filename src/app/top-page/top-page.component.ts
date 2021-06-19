@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from '../interfaces/book';
 import { BookService } from '../services/book.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-top-page',
@@ -15,6 +16,8 @@ export class TopPageComponent implements OnInit {
   start: number = 0;
   end: number = 5;
 
+  pageEvent: PageEvent;
+
   constructor(private book: BookService) { }
 
   ngOnInit(): void {
@@ -27,9 +30,10 @@ export class TopPageComponent implements OnInit {
     })
   }
 
-  setPaginatorData(event): void {
+  setPaginatorData(event: PageEvent): PageEvent {
     this.start = event.pageIndex * event.pageSize;
     this.end = this.start + event.pageSize;
+    return event;
   }
 
 }
