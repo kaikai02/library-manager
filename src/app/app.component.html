@@ -2,11 +2,17 @@
   <header class="my-header">
     <div class="my-container my-header__inner">
       <p class="my-header__title"><a routerLink="/">Share Library</a></p>
-      <div *ngIf="user$ | async">
+      <div *ngIf="user$ | async as user">
         <button mat-flat-button routerLink="/registration" class="my-header__button">新しい本を登録</button>
         <button mat-icon-button [matMenuTriggerFor]="menu" class="my-header__menu"><mat-icon class="my-header__icon">menu_book</mat-icon></button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">logout</button>
+          <p class="my-header__info">
+            <span class="my-header__avatar"><img [src]="user.photoURL" alt=""></span>
+            <span class="my-header__name">{{ user.displayName }}</span>
+            <span class="my-header__mail" *ngIf="user.email">{{ user.email }}</span>
+          </p>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">ログアウト</button>
         </mat-menu>
       </div>
     </div>

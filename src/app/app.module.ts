@@ -16,6 +16,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -48,6 +49,7 @@ import { environment } from 'src/environments/environment';
     MatMenuModule,
     MatIconModule,
     MatPaginatorModule,
+    MatDividerModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
