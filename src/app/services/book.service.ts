@@ -16,7 +16,7 @@ export class BookService {
     private snackbar: MatSnackBar
   ) { }
 
-  addBook(book): Promise<void> {
+  addBook(book, uid: string): Promise<void> {
     const params: Book = {
       id: book.isbn,
       title: book.title,
@@ -27,7 +27,7 @@ export class BookService {
       published: book.published,
       isBorrow: book.isBorrow,
     }
-    return this.store.doc(`books/${params.id}`).set(params, { merge: true }).then(() => {
+    return this.store.doc(`users/${uid}/books/${params.id}`).set(params, { merge: true }).then(() => {
       this.router.navigateByUrl('/');
       this.snackbar.open('登録できました！', null, { duration: 2000 });
     }).catch(() => {
@@ -35,17 +35,17 @@ export class BookService {
     });
   }
 
-  getBooks(): Observable<Book[]> {
-    return this.store.collection<Book>('books').valueChanges();
+  getBooks(uid: string): Observable<Book[]> {
+    return this.store.collection<Book>(`users/${uid}/books`).valueChanges();
   }
 
-  getBook(id: number): Observable<Book> {
-    return this.store.doc<Book>(`books/${id}`).valueChanges();
+  getBook(id: number, uid: string): Observable<Book> {
+    return this.store.doc<Book>(`users/${uid}/books/${id}`).valueChanges();
   }
 
-  updateBorrow(id: number, isBorrow: boolean): Promise<void> {
+  updateBorrow(id: number, uid:string, isBorrow: boolean): Promise<void> {
     console.log(isBorrow);
-    return this.store.doc<Book>(`books/${id}`).update({
+    return this.store.doc<Book>(`users/${uid}/books/${id}`).update({
       isBorrow: !isBorrow,
     });
   }
