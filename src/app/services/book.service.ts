@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import firebase from 'firebase/app';
 import { Book } from 'src/app/interfaces/book';
 
 @Injectable({
@@ -26,6 +27,7 @@ export class BookService {
       publisher: book.publisher ? book.publisher : null,
       published: book.published,
       isBorrow: book.isBorrow,
+      createdAt: firebase.firestore.Timestamp.now(),
     }
     return this.store.doc(`users/${uid}/books/${params.id}`).set(params, { merge: true }).then(() => {
       this.router.navigateByUrl('/');
@@ -36,7 +38,7 @@ export class BookService {
   }
 
   getBooks(uid: string): Observable<Book[]> {
-    return this.store.collection<Book>(`users/${uid}/books`).valueChanges();
+    return this.store.collection<Book>(`users/${uid}/books`, ref => ref.orderBy('createdAt', 'desc')).valueChanges();
   }
 
   getBook(id: number, uid: string): Observable<Book> {
