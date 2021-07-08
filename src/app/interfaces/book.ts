@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 export interface Book {
   id: string;
   title: string;
@@ -7,4 +8,5 @@ export interface Book {
   publisher?: string;
   published: string;
   isBorrow: boolean;
+  createdAt: firebase.firestore.Timestamp;
 }
