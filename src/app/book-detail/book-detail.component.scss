@@ -13,6 +13,11 @@
     &__right {
       flex: 0 0 70%;
     }
+    &__thumb {
+      img {
+        box-shadow: 0 1px 3px rgb(0 0 0 / 50%);
+      }
+    }
     &__title {
       padding-bottom: 12px;
       margin-bottom: 25px;

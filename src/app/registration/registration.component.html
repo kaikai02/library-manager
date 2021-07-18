@@ -10,7 +10,10 @@
   <div class="my-container">
     <div class="my-search-list" *ngIf="books">
       <mat-card class="my-book-panel" *ngFor="let book of books">
-        <div class="my-book-panel__thumb"><img [src]="book.thumbnail" alt=""></div>
+        <div class="my-book-panel__thumb">
+          <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
+          <img *ngIf="!book.thumbnail" src="/assets/noimage.png" alt="">
+        </div>
         <div class="my-book-panel__content">
           <p class="my-book-panel__name">{{ book.title }}</p>
           <p class="my-book-panel__info" *ngIf="book.author">著者：{{ book.author }}</p>
