@@ -23,8 +23,10 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.subscribe((user) => {
-      this.uid = user.uid;
-      this.onGetBook(user.uid);
+      if (user) {
+        this.uid = user.uid;
+        this.onGetBook(user.uid);
+      }
     })
   }
 
