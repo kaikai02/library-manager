@@ -25,11 +25,7 @@ export class TopPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe((user) => {
-      if (user) {
-        this.onGetBooks(user.uid);
-      }
-    })
+    this.onGetBooks(this.auth.uid);
   }
 
   onGetBooks(uid: string): void {
