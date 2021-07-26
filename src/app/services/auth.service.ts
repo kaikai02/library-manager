@@ -31,7 +31,7 @@ export class AuthService {
       })
     )
     this.user$.subscribe((user) => {
-      this.uid = user.uid;
+      this.uid = user && user.uid;
     })
   }
 

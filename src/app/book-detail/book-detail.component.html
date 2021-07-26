@@ -13,8 +13,13 @@
         <p class="my-detail-card__info" *ngIf="book.author">著者：{{ book.author }}</p>
         <p class="my-detail-card__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
         <p class="my-detail-card__info" *ngIf="book.published">発行：{{ book.published }}</p>
-        <mat-slide-toggle [checked]="book.isBorrow" (change)="onChangeBorrow(book.isBorrow)" class="my-detail-card__toggle">貸出中</mat-slide-toggle>
+        <div class="my-detail-card__toggle">
+          <mat-slide-toggle [checked]="book.isBorrow" (change)="onChangeBorrow(book.isBorrow)">貸出中</mat-slide-toggle>
+        </div>
       </div>
     </mat-card>
+    <div class="my-detail-return">
+      <button mat-raised-button routerLink="/">一覧へ戻る</button>
+    </div>
   </div>
 </section>

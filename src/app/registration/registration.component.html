@@ -8,7 +8,7 @@
 </section>
 <section class="my-section">
   <div class="my-container">
-    <div class="my-search-list" *ngIf="books">
+    <div class="my-search-list" *ngIf="books; else notbooks">
       <mat-card class="my-book-panel" *ngFor="let book of books">
         <div class="my-book-panel__thumb">
           <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
@@ -23,5 +23,8 @@
         </div>
       </mat-card>
     </div>
+    <ng-template #notbooks>
+      <p>一致する検索結果はありませんでした</p>
+    </ng-template>
   </div>
 </section>
