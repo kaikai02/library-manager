@@ -7,18 +7,24 @@
   </div>
 </section>
 <section class="my-section">
-  <div class="my-container">
-    <div class="my-search-list" *ngIf="books">
+  <div *ngIf="isbn.value && isSearched" class="my-container">
+    <div class="my-search-list" *ngIf="books; else notbooks">
       <mat-card class="my-book-panel" *ngFor="let book of books">
-        <div class="my-book-panel__thumb"><img [src]="book.thumbnail" alt=""></div>
+        <div class="my-book-panel__thumb">
+          <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
+          <img *ngIf="!book.thumbnail" src="/assets/noimage.png" alt="">
+        </div>
         <div class="my-book-panel__content">
           <p class="my-book-panel__name">{{ book.title }}</p>
           <p class="my-book-panel__info" *ngIf="book.author">著者：{{ book.author }}</p>
           <p class="my-book-panel__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
           <p class="my-book-panel__info" *ngIf="book.published">発行：{{ book.published }}</p>
-          <button mat-flat-button color="primary" (click)="onAddBook()" class="my-book-panel__button" *ngIf="!isExist">シェアライブラリーに追加</button>
+          <button mat-flat-button color="primary" (click)="onAddBook(book)" class="my-book-panel__button" *ngIf="!isExist">シェアライブラリーに追加</button>
         </div>
       </mat-card>
     </div>
+    <ng-template #notbooks>
+      <p>一致する検索結果はありませんでした</p>
+    </ng-template>
   </div>
 </section>

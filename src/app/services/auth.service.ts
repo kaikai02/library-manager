@@ -13,6 +13,7 @@ import { User } from '../interfaces/user';
 })
 export class AuthService {
   user$: Observable<User>;
+  uid: string;
 
   constructor(
     private auth: AngularFireAuth,
@@ -29,6 +30,9 @@ export class AuthService {
         }
       })
     )
+    this.user$.subscribe((user) => {
+      this.uid = user && user.uid;
+    })
   }
 
   login(): Promise<void> {

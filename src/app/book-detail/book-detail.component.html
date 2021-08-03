@@ -2,7 +2,10 @@
   <div class="my-container">
     <mat-card class="my-detail-card" *ngIf="book$ | async as book">
       <div class="my-detail-card__left">
-        <figure class="my-detail-card__thumb"><img [src]="book.thumbnail" alt=""></figure>
+        <figure class="my-detail-card__thumb">
+          <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
+          <img *ngIf="!book.thumbnail" src="/assets/noimage.png" alt="">
+        </figure>
       </div>
       <div class="my-detail-card__right">
         <h1 class="my-detail-card__title">{{ book.title }}</h1>
@@ -10,8 +13,13 @@
         <p class="my-detail-card__info" *ngIf="book.author">著者：{{ book.author }}</p>
         <p class="my-detail-card__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
         <p class="my-detail-card__info" *ngIf="book.published">発行：{{ book.published }}</p>
-        <mat-slide-toggle [checked]="book.isBorrow" (change)="onChangeBorrow(book.isBorrow)" class="my-detail-card__toggle">貸出中</mat-slide-toggle>
+        <div class="my-detail-card__toggle">
+          <mat-slide-toggle [checked]="book.isBorrow" (change)="onChangeBorrow(book.isBorrow)">貸出中</mat-slide-toggle>
+        </div>
       </div>
     </mat-card>
+    <div class="my-detail-return">
+      <button mat-raised-button routerLink="/">一覧へ戻る</button>
+    </div>
   </div>
 </section>

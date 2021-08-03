@@ -1,14 +1,22 @@
 <section class="my-section">
   <div class="my-container">
     <h1 class="my-title">本棚一覧</h1>
-    <div class="my-book-list">
-      <div class="my-book-card" *ngFor="let book of books$ | async | slice: start: end">
-        <a routerLink="/books/{{book.id}}" routerLinkActive="router-link-active">
-          <span *ngIf="book.isBorrow" class="my-book-card__badge">貸出中</span>
-          <figure class="my-book-card__thumb"><img [src]="book.thumbnail" alt=""></figure>
-        </a>
+    <ng-container *ngIf="length; else notbooks">
+      <div class="my-book-list">
+        <div class="my-book-card" *ngFor="let book of books$ | async | slice: start: end">
+          <a routerLink="/books/{{book.id}}" routerLinkActive="router-link-active">
+            <span *ngIf="book.isBorrow" class="my-book-card__badge">貸出中</span>
+            <figure class="my-book-card__thumb">
+              <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
+              <img *ngIf="!book.thumbnail" src="/assets/noimage.png" alt="">
+            </figure>
+          </a>
+        </div>
       </div>
-    </div>
-    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="setPaginatorData($event)" class="my-paginator"></mat-paginator>
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="setPaginatorData($event)" class="my-paginator"></mat-paginator>
+    </ng-container>
+    <ng-template #notbooks>
+      <p class="my-book-notext">登録されている本は0冊です</p>
+    </ng-template>
   </div>
 </section>

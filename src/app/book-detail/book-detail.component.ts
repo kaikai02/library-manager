@@ -11,7 +11,6 @@ import { BookService } from '../services/book.service';
   styleUrls: ['./book-detail.component.scss']
 })
 export class BookDetailComponent implements OnInit {
-  uid: string;
   isbn = +this.route.snapshot.paramMap.get('isbn')
   book$: Observable<Book>;
 
@@ -22,10 +21,7 @@ export class BookDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.user$.subscribe((user) => {
-      this.uid = user.uid;
-      this.onGetBook(user.uid);
-    })
+    this.onGetBook(this.auth.uid);
   }
 
   onGetBook(uid: string): void {
@@ -33,7 +29,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   onChangeBorrow(isBorrow: boolean): void {
-    this.bookService.updateBorrow(this.isbn, this.uid, isBorrow);
+    this.bookService.updateBorrow(this.isbn, this.auth.uid, isBorrow);
   }
 
 }

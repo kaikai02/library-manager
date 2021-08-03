@@ -49,6 +49,10 @@ export class BookService {
     console.log(isBorrow);
     return this.store.doc<Book>(`users/${uid}/books/${id}`).update({
       isBorrow: !isBorrow,
+    }).then(() => {
+      this.snackbar.open('貸出状況が変更されました', null, { duration: 2000 });
+    }).catch(() => {
+      this.snackbar.open('貸出状況が変更できませんでした', null, { duration: 2000 });
     });
   }
 }
