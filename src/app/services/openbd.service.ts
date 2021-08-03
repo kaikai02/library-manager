@@ -21,7 +21,7 @@ export class OpenbdService {
       )
       .pipe(
         map((data: any) => {
-          if (data?.length){
+          if (data[0] != null){
             return data.map((book: any) => {
               return {
                 isbn: book.summary.isbn,
@@ -34,6 +34,8 @@ export class OpenbdService {
                 isBorrow: false,
               }
             })
+          } else {
+            return null;
           }
         })
       )

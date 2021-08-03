@@ -22,6 +22,7 @@ export class RegistrationComponent implements OnInit {
   });
   books: Book[];
   isExist: boolean;
+  isSearched: boolean;
 
   constructor(
     private googleBookApiService: GoogleBookApiService,
@@ -29,7 +30,9 @@ export class RegistrationComponent implements OnInit {
     private store: AngularFirestore,
     private openbd: OpenbdService,
     private auth: AuthService
-  ) { }
+  ) {
+    this.isSearched = false;
+  }
 
   ngOnInit(): void {
     this.auth.user$.subscribe((user) => {
@@ -44,8 +47,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.openbd.Search(this.isbn.value).subscribe((data: any) => {
-      this.books = data
+    this.books = null;
+    this.openbd.Search(this.isbn.value).subscribe((data: Book[]) => {
+      if (data) {
+        this.books = data;
+      }
+      this.isSearched = true;
     });
 
     this.store.doc(`users/${this.uid}/books/${this.isbn.value}`).ref.get().then((doc) => {
@@ -57,8 +64,8 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  onAddBook(): void {
-    this.book.addBook(this.books[0], this.uid);
+  onAddBook(book): void {
+    this.book.addBook(book, this.uid);
   }
 
 }
