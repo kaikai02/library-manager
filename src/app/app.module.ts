@@ -27,6 +27,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { environment } from 'src/environments/environment';
     RegistrationComponent,
     TopPageComponent,
     BookDetailComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

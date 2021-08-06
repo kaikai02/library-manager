@@ -1,16 +1,16 @@
 <section class="my-section">
   <div class="my-container">
-    <h1 class="my-title">本を登録</h1>
+    <h1 class="my-title">登録した本を検索</h1>
     <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="my-form">
-      <input formControlName="isbn" class="my-form__input" placeholder="ISBNで検索" required>
+      <input formControlName="isbn" class="my-form__input" placeholder="ISBNで登録した本を検索" required>
       <button mat-flat-button color="primary" [disabled]="searchForm.invalid || searchForm.pristine" class="my-form__button">検索</button>
     </form>
   </div>
 </section>
 <section class="my-section">
   <div *ngIf="isbn.value && isSearched" class="my-container">
-    <div class="my-search-list" *ngIf="books; else notbooks">
-      <mat-card class="my-book-panel" *ngFor="let book of books">
+    <div class="my-search-list" *ngIf="book$ | async as book; else notbooks">
+      <mat-card class="my-book-panel">
         <div class="my-book-panel__thumb">
           <img *ngIf="book.thumbnail" [src]="book.thumbnail" alt="">
           <img *ngIf="!book.thumbnail" src="/assets/noimage.png" alt="">
@@ -18,9 +18,7 @@
         <div class="my-book-panel__content">
           <p class="my-book-panel__name">{{ book.title }}</p>
           <p class="my-book-panel__info" *ngIf="book.author">著者：{{ book.author }}</p>
-          <p class="my-book-panel__info" *ngIf="book.publisher">出版社：{{ book.publisher }}</p>
-          <p class="my-book-panel__info" *ngIf="book.published">発行：{{ book.published }}</p>
-          <button mat-flat-button color="primary" (click)="onAddBook(book)" class="my-book-panel__button" *ngIf="!isExist">シェアライブラリーに追加</button>
+          <button mat-flat-button color="primary" routerLink="/books/{{book.id}}" class="my-book-panel__button">本の詳細を見る</button>
         </div>
       </mat-card>
     </div>
