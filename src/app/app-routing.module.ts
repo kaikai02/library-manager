@@ -4,6 +4,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { TopPageComponent } from './top-page/top-page.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import { SearchComponent } from './search/search.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuard], canLoad: [AuthGuard] },
   { path: 'books/:isbn', component: BookDetailComponent, canActivate: [AuthGuard], canLoad: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard], canLoad: [AuthGuard] },
 ];
 
 @NgModule({
