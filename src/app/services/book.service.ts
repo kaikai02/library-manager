@@ -55,4 +55,13 @@ export class BookService {
       this.snackbar.open('貸出状況が変更できませんでした', null, { duration: 2000 });
     });
   }
+
+  removeBook(id: number, uid: string): Promise<void> {
+    return this.store.doc<Book>(`users/${uid}/books/${id}`).delete().then(() => {
+      this.router.navigateByUrl('/');
+      this.snackbar.open('削除されました', null, { duration: 2000 });
+    }).catch(() => {
+      this.snackbar.open('削除できませんでした', null, { duration: 2000 });
+    });
+  }
 }

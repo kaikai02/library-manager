@@ -15,6 +15,7 @@
         <p class="my-detail-card__info" *ngIf="book.published">発行：{{ book.published }}</p>
         <div class="my-detail-card__toggle">
           <mat-slide-toggle [checked]="book.isBorrow" (change)="onChangeBorrow(book.isBorrow)">貸出中</mat-slide-toggle>
+          <button mat-icon-button (click)="onRemove(book.id)"><mat-icon>delete</mat-icon></button>
         </div>
       </div>
     </mat-card>

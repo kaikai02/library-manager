@@ -32,4 +32,10 @@ export class BookDetailComponent implements OnInit {
     this.bookService.updateBorrow(this.isbn, this.auth.uid, isBorrow);
   }
 
+  onRemove(id: number): void {
+    if (window.confirm('この本を削除してよろしいですか？')) {
+      this.bookService.removeBook(id, this.auth.uid);
+    }
+  }
+
 }
